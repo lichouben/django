@@ -12,3 +12,21 @@ def user_list(request):
 
 def user_add(request):
     return render(request,"user_add.html")
+
+def tql(request):
+    name = '李嘉骏'
+    roles = ['管理员','CEO','保安' ]
+    salary_info = {'name':'李嘉骏', 'selary':'10000'}
+
+
+    return render(request,"tql.html",{'n1':name,'n2':roles,'n3':salary_info})
+
+def news(request):
+    import requests
+    from bs4 import BeautifulSoup
+    url = "http://www.chinaunicom.com.cn/api/article/NewsByIndex/2/2023/02/news"
+    headers = {'User-Agent': "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36 Edg/119.0.0.0"}
+    res = requests.get(url, headers=headers)
+    data_list = res.json()
+
+    return render(request,"news.html",{"news_list":data_list})
