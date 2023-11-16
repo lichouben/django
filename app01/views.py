@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 
 # Create your views here.
 
@@ -30,3 +30,29 @@ def news(request):
     data_list = res.json()
 
     return render(request,"news.html",{"news_list":data_list})
+
+def something(request):
+    
+
+    # return render(request,"something.html")
+
+    # 浏览器重定向
+    return redirect("https://www.baidu.com")
+
+
+
+def login(request):
+    if request.method == "GET":
+        return render(request,login.html)
+    else:
+        # 如果是post请求，则获得用户提交的数据
+        print(request.POST)
+        return HttpResponse("登录成功！")
+
+
+
+
+
+
+
+
